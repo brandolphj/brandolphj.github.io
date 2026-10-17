@@ -4,46 +4,102 @@ title: Home
 ---
 
 <section class="hero">
-  <span class="category">
-    CLOUD SECURITY • IAM • GRC
-  </span>
-
-  <h1>Cybersecurity Projects & Research</h1>
-
   <p>
-    A collection of hands-on cybersecurity projects
-    documenting security implementations,
-    investigations, technical findings,
-    and lessons learned.
+    Hi, I'm Jared. I'm a cybersecurity professional and IT
+    enthusiast. This is my digital workspace where I document
+    hands-on projects, security research, and technical notes.
+    I enjoy exploring cloud security, identity and access
+    management, and practical ways to strengthen systems.
   </p>
 </section>
 
+<div class="latest-banner">
+  <p>
+    <span class="category">&gt;</span>
+    Check out my latest project:
+    <a href="{{ '/projects/azure-iam-rbac/' | relative_url }}">
+      <strong>Azure IAM &amp; RBAC Investigation</strong>
+    </a>
+    — a hands-on look at role assignments,
+    privileged access, and excessive permissions.
+  </p>
+</div>
+
+<section class="featured-project">
+
+  <div class="terminal">
+    <div class="terminal-header">
+      ● ● ● &nbsp; Azure CLI ~/projects/azure-iam-rbac
+    </div>
+
+    <div class="terminal-body">
+<pre><span class="command">$ az role assignment list \
+  --resource-group example-rg \
+  --output table</span>
+
+Principal        Role          Scope
+------------------------------------------
+security-admin   Owner         example-rg
+analyst          Reader        example-rg
+service-app      Contributor   example-rg
+
+<span class="command">$ az role assignment list \
+  --all --output table</span>
+
+Reviewing role assignments...
+Checking privileged access...
+Investigating excessive permissions...
+
+<span class="command">$ _</span></pre>
+    </div>
+  </div>
+
+  <div>
+    <div class="category">▱ FEATURED PROJECT</div>
+
+    <h2>Azure IAM &amp; RBAC Investigation</h2>
+
+    <p class="category">
+      CLOUD SECURITY / IAM | OCT 2026
+    </p>
+
+    <p class="description">
+      A hands-on investigation of Azure identity and
+      access management, focusing on role-based access
+      control (RBAC) and Privileged Identity Management
+      (PIM).
+    </p>
+
+    <a class="button"
+       href="{{ '/projects/azure-iam-rbac/' | relative_url }}">
+      VIEW PROJECT →
+    </a>
+  </div>
+
+</section>
+
 <section>
-  <h2 class="section-title">Featured Projects</h2>
+  <h2 class="section-title">MORE PROJECTS</h2>
 
   <div class="project-grid">
-
     {% for project in site.projects %}
-    <a href="{{ project.url | relative_url }}"
-       class="project-card">
+      {% unless project.url contains 'azure-iam-rbac' %}
+      <a href="{{ project.url | relative_url }}"
+         class="project-card">
 
-      {% if project.image %}
-      <img src="{{ project.image | relative_url }}"
-           alt="{{ project.title | escape }}">
-      {% endif %}
+        {% if project.image %}
+        <img src="{{ project.image | relative_url }}"
+             alt="{{ project.title | escape }}">
+        {% endif %}
 
-      <div class="project-content">
-        <span class="category">
-          {{ project.category }}
-        </span>
+        <div class="project-content">
+          <span class="category">{{ project.category }}</span>
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+        </div>
 
-        <h3>{{ project.title }}</h3>
-
-        <p>{{ project.description }}</p>
-      </div>
-
-    </a>
+      </a>
+      {% endunless %}
     {% endfor %}
-
   </div>
 </section>
