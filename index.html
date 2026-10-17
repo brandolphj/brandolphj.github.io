@@ -1,0 +1,50 @@
+
+---
+layout: default
+title: Home
+---
+
+<section class="hero">
+  <span class="category">
+    CLOUD SECURITY • IAM • GRC
+  </span>
+
+  <h1>Cybersecurity Projects & Research</h1>
+
+  <p>
+    A collection of hands-on cybersecurity projects
+    documenting security implementations,
+    investigations, technical findings,
+    and lessons learned.
+  </p>
+</section>
+
+<section>
+  <h2 class="section-title">Featured Projects</h2>
+
+  <div class="project-grid">
+
+    {% for project in site.projects %}
+    <a href="{{ project.url | relative_url }}"
+       class="project-card">
+
+      {% if project.image %}
+      <img src="{{ project.image | relative_url }}"
+           alt="{{ project.title | escape }}">
+      {% endif %}
+
+      <div class="project-content">
+        <span class="category">
+          {{ project.category }}
+        </span>
+
+        <h3>{{ project.title }}</h3>
+
+        <p>{{ project.description }}</p>
+      </div>
+
+    </a>
+    {% endfor %}
+
+  </div>
+</section>
