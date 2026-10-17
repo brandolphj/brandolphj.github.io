@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="{{ '/' | relative_url }}">
+          CYBERSECURITY / PORTFOLIO
+        </a>
+
+        <div class="links">
+          <a href="{{ '/' | relative_url }}">Home</a>
+          <a href="{{ '/projects/' | relative_url }}">Projects</a>
+          <a href="{{ '/about/' | relative_url }}">About</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {{ content }}
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© {{ 'now' | date: '%Y' }} Cybersecurity Portfolio</p>
+    </div>
+  </footer>
+</body>
+</html>
