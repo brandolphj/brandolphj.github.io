@@ -1,0 +1,18 @@
+
+title: Cybersecurity Portfolio
+description: Hands-on cybersecurity projects and technical documentation
+theme: null
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: project
+
+markdown: kramdown
