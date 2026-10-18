@@ -5,6 +5,53 @@ permalink: /home-test/
 ---
 
 <style>
+/* TEST PAGE NAVIGATION */
+
+.site-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 18px 0 22px;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 0;
+  background: transparent;
+  color: #70db91;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.site-nav a::before {
+  content: "[ ";
+}
+
+.site-nav a::after {
+  content: " ]";
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.site-nav a.active {
+  background: #70db91;
+  color: #202820;
+  border: 0;
+}
+
+.site-nav a:focus-visible {
+  outline: 2px solid #c5ffd2;
+  outline-offset: 3px;
+}
+
+/* MODERN TERMINAL HOMEPAGE */
+
 .modern-terminal {
   max-width: 900px;
   margin: 45px auto 80px;
@@ -18,77 +65,80 @@ permalink: /home-test/
 .modern-terminal .system-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  font: 12px "Courier New", monospace;
-  color: #83df9b;
+  color: #70db91;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+}
+
+.modern-terminal .connection-status {
+  white-space: nowrap;
 }
 
 .modern-terminal .system-divider {
   border: 0;
-  border-top: 1px solid #4a5f50;
+  border-top: 1px solid #45604e;
   margin: 22px 0 35px;
 }
 
-.modern-terminal h1 {
-  font-family: "Chakra Petch", sans-serif;
-  font-size: clamp(30px, 5vw, 48px);
-  line-height: 1.2;
-  letter-spacing: 2px;
-  color: #83df9b;
-  margin: 0 0 10px;
-}
-
-.modern-terminal .subtitle {
-  font-size: 17px;
-  color: #d3d9d4;
-}
-
 .modern-terminal .welcome {
-  margin-top: 50px;
-  font: 15px "Courier New", monospace;
-  color: #83df9b;
+  color: #70db91;
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  margin: 0 0 14px;
 }
 
 .modern-terminal .description {
-  max-width: 600px;
-  margin: 12px 0 25px;
+  max-width: 650px;
+  margin: 0;
   color: #cbd2cc;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
-.modern-terminal .terminal-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.modern-terminal .terminal-links a {
-  padding: 9px 15px;
-  color: #83df9b;
-  border: 1px solid #4a5f50;
-  font: 14px "Courier New", monospace;
-  text-decoration: none;
-  transition: background .15s, color .15s;
-}
-
-.modern-terminal .terminal-links a:hover,
-.modern-terminal .terminal-links a:focus-visible {
-  background: #83df9b;
-  color: #202820;
+.modern-terminal .access-granted {
+  color: #70db91;
+  font-family: "Courier New", monospace;
 }
 
 .modern-terminal .system-footer {
   margin-top: 70px;
   padding-top: 18px;
-  border-top: 1px solid #4a5f50;
-  color: #83df9b;
-  font: 12px "Courier New", monospace;
+  border-top: 1px solid #45604e;
+  color: #70db91;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
 }
 
+/* MOBILE */
+
 @media (max-width: 600px) {
+  .site-nav {
+    gap: 8px;
+    padding: 14px 0 20px;
+  }
+
+  .site-nav a {
+    padding: 7px 10px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
   .modern-terminal {
     padding: 20px 8px;
-    margin-top: 20px;
+    margin: 20px auto 50px;
+  }
+
+  .modern-terminal .system-header {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav a {
+    transition: none;
   }
 }
 </style>
@@ -96,29 +146,28 @@ permalink: /home-test/
 <section class="modern-terminal">
 
   <div class="system-header">
-    <span>Welcome to Brandolph Systems (TM) TermLink</span>
-    <span>● CONNECTED</span>
+    <span>
+      Welcome to Brandolph Systems (TM) TermLink
+    </span>
+
+    <span class="connection-status">
+      &#9679; CONNECTED
+    </span>
   </div>
 
   <hr class="system-divider">
 
-  <h1>JARED BRANDOLPH</h1>
-
-  <p class="subtitle">
-    Cybersecurity Research &amp; Technical Documentation
+  <p class="welcome">
+    &gt; WELCOME, USER.
   </p>
-
-  <div class="welcome">&gt; WELCOME, USER.</div>
 
   <p class="description">
-    Access granted. Explore hands-on cybersecurity projects,
+    <span class="access-granted">
+      ACCESS GRANTED.
+    </span>
+    Explore hands-on cybersecurity projects,
     security investigations, and technical documentation.
   </p>
-
-  <nav class="terminal-links" aria-label="Homepage directories">
-    <a href="{{ '/projects/' | relative_url }}">[ PROJECTS ]</a>
-    <a href="{{ '/about/' | relative_url }}">[ ABOUT ]</a>
-  </nav>
 
   <div class="system-footer">
     SYS.STATUS: NOMINAL // PUBLIC ACCESS
