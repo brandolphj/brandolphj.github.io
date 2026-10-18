@@ -13,10 +13,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
   <style>
-    /* TermLink system header */
+    /* TERMLINK SYSTEM HEADER */
+
     .termlink-status-bar {
       display: flex;
       justify-content: space-between;
@@ -34,15 +36,20 @@
       white-space: nowrap;
     }
 
-    /* Fallout-style typing cursor */
+    /* THIN BLINKING TERMINAL CURSOR */
+
     .typing-cursor {
       display: inline-block;
-      width: 0.58em;
+      width: 0.25em;
       height: 0.78em;
       margin-left: 0.08em;
-      background: #70db91;
+      background-color: #70db91;
       vertical-align: -0.07em;
-      animation: termlink-cursor-blink 0.85s step-end infinite;
+
+      animation-name: termlink-cursor-blink;
+      animation-duration: 0.8s;
+      animation-timing-function: step-end;
+      animation-iteration-count: infinite;
     }
 
     @keyframes termlink-cursor-blink {
@@ -55,16 +62,12 @@
       }
     }
 
+    /* MOBILE */
+
     @media (max-width: 600px) {
       .termlink-status-bar {
         font-size: 11px;
         padding-bottom: 16px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .typing-cursor {
-        animation: none;
       }
     }
   </style>
@@ -73,6 +76,8 @@
 <body>
 
   <header class="site-header">
+
+    <!-- SYSTEM STATUS -->
 
     <div class="termlink-status-bar">
       <span>
@@ -84,6 +89,8 @@
       </span>
     </div>
 
+    <!-- ANIMATED NAME -->
+
     <div class="header-inner">
       <a class="site-logo" href="{{ '/' | relative_url }}">
         <span id="decrypt-name">JARED BRANDOLPH</span><span
@@ -92,28 +99,44 @@
       </a>
     </div>
 
+    <!-- NAVIGATION -->
+
     <nav class="site-nav" aria-label="Main navigation">
+
       <a href="{{ '/' | relative_url }}"
-         {% if page.url == '/' %}class="active"{% endif %}>HOME</a>
+         {% if page.url == '/' %}class="active"{% endif %}>
+        HOME
+      </a>
 
       <a href="{{ '/projects/' | relative_url }}"
-         {% if page.url contains '/projects/' %}class="active"{% endif %}>PROJECTS</a>
+         {% if page.url contains '/projects/' %}class="active"{% endif %}>
+        PROJECTS
+      </a>
 
       <a href="{{ '/about/' | relative_url }}"
-         {% if page.url == '/about/' %}class="active"{% endif %}>ABOUT</a>
+         {% if page.url == '/about/' %}class="active"{% endif %}>
+        ABOUT
+      </a>
+
     </nav>
 
   </header>
 
+  <!-- PAGE CONTENT -->
+
   <main class="container">
     {{ content }}
   </main>
+
+  <!-- FOOTER -->
 
   <footer class="site-footer">
     <div class="container">
       <p>© {{ 'now' | date: '%Y' }} Jared Brandolph</p>
     </div>
   </footer>
+
+  <!-- FALLOUT-STYLE TYPING ANIMATION -->
 
   <script>
     (() => {
