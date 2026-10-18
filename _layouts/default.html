@@ -46,62 +46,88 @@
   
 
 
-<script>
-window.addEventListener("pageshow", () => {
-  const element = document.getElementById("decrypt-name");
-  if (!element) return;
 
+<script>
+(() => {
   const finalText = "JARED BRANDOLPH";
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  const duration = 1400;
-  const frameDelay = 65;
+  const duration = 1800;
+  const frameDelay = 85;
 
-  let startTime = null;
-  let lastFrame = 0;
+  let animationId = null;
 
-  function scramble(revealed) {
-    return finalText.split("").map((char, index) => {
-      if (char === " ") return " ";
-      if (index < revealed) return char;
-
-      return characters[
-        Math.floor(Math.random() * characters.length)
-      ];
-    }).join("");
-  }
-
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    element.textContent = finalText;
-    return;
-  }
-
-  element.textContent = scramble(0);
-
-  function animate(timestamp) {
-    if (startTime === null) startTime = timestamp;
-
-    const elapsed = timestamp - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-
-    // Smooth acceleration
-    const eased = progress * progress * (3 - 2 * progress);
-    const revealed = Math.floor(eased * finalText.length);
-
-    if (timestamp - lastFrame >= frameDelay || progress === 1) {
-      element.textContent = scramble(revealed);
-      lastFrame = timestamp;
+  function startAnimation() {
+    const element = document.getElementById("decrypt-name");
+    if (!element) {
+      console.error("Decryption: name element not found");
+      return;
     }
 
-    if (progress < 1) {
-      requestAnimationFrame(animate);
-    } else {
+    if (animationId !== null) {
+      cancelAnimationFrame(animationId);
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       element.textContent = finalText;
+      console.log("Decryption skipped: reduced motion enabled");
+      return;
     }
+
+    let startTime = null;
+    let lastFrame = -Infinity;
+
+    function render(progress) {
+      const eased = 1 - Math.pow(1 - progress, 2);
+      const revealed = Math.floor(eased * finalText.length);
+
+      element.replaceChildren();
+
+      finalText.split("").forEach((char, index) => {
+        const span = document.createElement("span");
+
+        if (char === " ") {
+          span.textContent = "\u00A0";
+        } else if (index < revealed) {
+          span.textContent = char;
+        } else {
+          span.textContent = characters[
+            Math.floor(Math.random() * characters.length)
+          ];
+          span.style.opacity = "0.35";
+        }
+
+        element.appendChild(span);
+      });
+    }
+
+    render(0);
+
+    function animate(timestamp) {
+      if (startTime === null) startTime = timestamp;
+
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+
+      if (timestamp - lastFrame >= frameDelay || progress === 1) {
+        render(progress);
+        lastFrame = timestamp;
+      }
+
+      if (progress < 1) {
+        animationId = requestAnimationFrame(animate);
+      } else {
+        element.textContent = finalText;
+        animationId = null;
+      }
+    }
+
+    animationId = requestAnimationFrame(animate);
+    console.log("Decryption animation started");
   }
 
-  requestAnimationFrame(animate);
-});
+  window.addEventListener("pageshow", startAnimation);
+})();
 </script>
+
 
 
 
