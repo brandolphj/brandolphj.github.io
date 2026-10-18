@@ -67,12 +67,6 @@
       cancelAnimationFrame(animationId);
     }
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      element.textContent = finalText;
-      console.log("Decryption skipped: reduced motion enabled");
-      return;
-    }
-
     let startTime = null;
     let lastFrame = -Infinity;
 
