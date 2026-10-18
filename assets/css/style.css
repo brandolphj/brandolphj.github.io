@@ -50,7 +50,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   padding-bottom: 22px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 3px solid var(--border);
 }
 
 .site-logo {
@@ -129,20 +129,15 @@ a:hover {
   content: " ]";
 }
 
-
 .site-nav a:hover,
 .site-nav a:focus-visible {
   background: var(--green);
   color: #202820;
-  border: 0;
 }
 
 .site-nav a.active {
   background: transparent;
   color: var(--green);
-  border: 0;
-}
-
 }
 
 .site-nav a:focus-visible {
@@ -233,7 +228,7 @@ p {
 
 .terminal-header {
   background: #1b2520;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 3px solid var(--border);
   padding: 10px 14px;
   color: var(--green);
   font-size: 13px;
@@ -274,7 +269,7 @@ p {
 /* PROJECT GRID */
 
 .section-title {
-  border-top: 1px solid var(--border);
+  border-top: 3px solid var(--border);
   padding-top: 22px;
   margin-bottom: 25px;
   color: var(--green);
@@ -347,7 +342,7 @@ article pre {
 /* FOOTER */
 
 .site-footer {
-  border-top: 1px solid var(--border);
+  border-top: 3px solid var(--border);
   padding: 24px 0;
   color: var(--muted);
   font-size: 13px;
@@ -457,7 +452,7 @@ article pre {
 }
 
 .project-card-bottom {
-  border-top: 1px solid #435748;
+  border-top: 3px solid #435748;
   padding-top: 17px;
   color: var(--green);
   font-family: monospace;
