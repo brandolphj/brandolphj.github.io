@@ -129,12 +129,20 @@ a:hover {
   content: " ]";
 }
 
+
 .site-nav a:hover,
-.site-nav a:focus-visible,
-.site-nav a.active {
+.site-nav a:focus-visible {
   background: var(--green);
   color: #202820;
   border: 0;
+}
+
+.site-nav a.active {
+  background: transparent;
+  color: var(--green);
+  border: 0;
+}
+
 }
 
 .site-nav a:focus-visible {
