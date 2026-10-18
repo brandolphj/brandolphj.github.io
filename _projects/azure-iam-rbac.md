@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: project
 title: Azure IAM & RBAC Investigation
 category: Cloud Security / IAM
 description: Investigating Azure role assignments, privileged access, and excessive permissions.
-description: "Investigating excessive permissions and privileged access in Azure."
-category: "Cloud Security"
 date: 2026-10-17
 tools:
   - Azure
@@ -12,8 +10,6 @@ tools:
   - RBAC
   - PIM
 ---
-
-# Azure IAM & RBAC Investigation
 
 ## Project Overview
 
