@@ -4,6 +4,7 @@ title: Azure IAM & RBAC Investigation
 category: Cloud Security / IAM
 description: Investigating Azure role assignments, privileged access, and excessive permissions.
 date: 2026-10-17
+featured: true
 tools:
   - Azure
   - Entra ID
