@@ -5,156 +5,123 @@ permalink: /home-test/
 ---
 
 <style>
-.fallout-home {
-  max-width: 850px;
-  margin: 35px auto 80px;
-  padding: 30px;
-  background: #101610;
-  border: 1px solid #35583b;
-  border-radius: 6px;
-  font-family: "Courier New", monospace;
-  color: #c9d7cb;
+.modern-terminal {
+  max-width: 900px;
+  margin: 45px auto 80px;
+  padding: 38px;
+  background: #303030;
+  color: #cbd2cc;
+  font-family: Arial, sans-serif;
   line-height: 1.7;
 }
 
-.fallout-home .terminal-intro {
-  color: #70e583;
-  font-size: 13px;
-  letter-spacing: 0.3px;
+.modern-terminal .system-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font: 12px "Courier New", monospace;
+  color: #83df9b;
 }
 
-.fallout-home h1 {
-  color: #89ed9b;
-  font-family: "Chakra Petch", sans-serif;
-  font-size: clamp(26px, 5vw, 42px);
-  margin: 26px 0 6px;
-  line-height: 1.2;
-}
-
-.fallout-home .subtitle {
-  color: #b8c9bc;
-  font-size: 14px;
-}
-
-.fallout-home .terminal-line {
+.modern-terminal .system-divider {
   border: 0;
-  border-top: 1px solid #365b3d;
-  margin: 25px 0;
+  border-top: 1px solid #4a5f50;
+  margin: 22px 0 35px;
 }
 
-.fallout-home .welcome {
-  color: #70e583;
-  margin-bottom: 5px;
-}
-
-.fallout-home .terminal-menu {
-  margin: 24px 0;
-  max-width: 450px;
-}
-
-.fallout-home .terminal-menu a {
-  display: block;
-  padding: 5px 10px;
-  color: #70e583;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.fallout-home .terminal-menu a:hover,
-.fallout-home .terminal-menu a:focus-visible {
-  background: #55e66e;
-  color: #101610;
-}
-
-.fallout-home .section-label {
-  color: #70e583;
-  font-size: 12px;
-  margin-bottom: 10px;
-}
-
-.fallout-home .featured-project {
-  padding: 20px;
-  background: #1b261e;
-  border: 1px solid #365b3d;
-  border-radius: 4px;
-}
-
-.fallout-home .featured-project h2 {
-  color: #f0f5f0;
+.modern-terminal h1 {
   font-family: "Chakra Petch", sans-serif;
-  font-size: 23px;
-  margin: 8px 0;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.2;
+  letter-spacing: 2px;
+  color: #83df9b;
+  margin: 0 0 10px;
 }
 
-.fallout-home .featured-project p {
-  color: #c9d7cb;
-  font-size: 14px;
+.modern-terminal .subtitle {
+  font-size: 17px;
+  color: #d3d9d4;
 }
 
-.fallout-home .featured-project a {
-  color: #70e583;
+.modern-terminal .welcome {
+  margin-top: 50px;
+  font: 15px "Courier New", monospace;
+  color: #83df9b;
+}
+
+.modern-terminal .description {
+  max-width: 600px;
+  margin: 12px 0 25px;
+  color: #cbd2cc;
+}
+
+.modern-terminal .terminal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.modern-terminal .terminal-links a {
+  padding: 9px 15px;
+  color: #83df9b;
+  border: 1px solid #4a5f50;
+  font: 14px "Courier New", monospace;
   text-decoration: none;
+  transition: background .15s, color .15s;
 }
 
-.fallout-home .terminal-footer {
-  color: #8bb994;
-  font-size: 12px;
+.modern-terminal .terminal-links a:hover,
+.modern-terminal .terminal-links a:focus-visible {
+  background: #83df9b;
+  color: #202820;
+}
+
+.modern-terminal .system-footer {
+  margin-top: 70px;
+  padding-top: 18px;
+  border-top: 1px solid #4a5f50;
+  color: #83df9b;
+  font: 12px "Courier New", monospace;
 }
 
 @media (max-width: 600px) {
-  .fallout-home {
-    padding: 18px;
+  .modern-terminal {
+    padding: 20px 8px;
+    margin-top: 20px;
   }
 }
 </style>
 
-<div class="fallout-home">
+<section class="modern-terminal">
 
-  <div class="terminal-intro">
-    Welcome to Brandolph Systems (TM) TermLink
+  <div class="system-header">
+    <span>Welcome to Brandolph Systems (TM) TermLink</span>
+    <span>● CONNECTED</span>
   </div>
-  <div class="terminal-intro">
-    Clearance: Public Access
-  </div>
+
+  <hr class="system-divider">
 
   <h1>JARED BRANDOLPH</h1>
-  <div class="subtitle">
-    Cybersecurity Research & Technical Documentation
-  </div>
 
-  <hr class="terminal-line">
+  <p class="subtitle">
+    Cybersecurity Research &amp; Technical Documentation
+  </p>
 
-  <p class="welcome">WELCOME, USER.</p>
-  <p class="welcome">TERMINAL ACCESS GRANTED.</p>
-  <p>Select an available directory to continue.</p>
+  <div class="welcome">&gt; WELCOME, USER.</div>
 
-  <nav class="terminal-menu" aria-label="Terminal menu">
-    <a href="{{ '/projects/' | relative_url }}">[Project Archive]</a>
-    <a href="{{ '/about/' | relative_url }}">[Personnel File]</a>
-    <a href="#featured">[Featured Investigation]</a>
+  <p class="description">
+    Access granted. Explore hands-on cybersecurity projects,
+    security investigations, and technical documentation.
+  </p>
+
+  <nav class="terminal-links" aria-label="Homepage directories">
+    <a href="{{ '/projects/' | relative_url }}">[ PROJECTS ]</a>
+    <a href="{{ '/about/' | relative_url }}">[ ABOUT ]</a>
   </nav>
 
-  <hr class="terminal-line">
-
-  <section id="featured">
-    <div class="section-label">[ FEATURED RECORD / CLOUD SECURITY ]</div>
-
-    <div class="featured-project">
-      <h2>Azure IAM & RBAC Investigation</h2>
-      <p>
-        Investigating Azure role assignments, privileged access,
-        and excessive permissions.
-      </p>
-      <a href="{{ '/projects/azure-iam-rbac/' | relative_url }}">
-        &gt; OPEN RECORD
-      </a>
-    </div>
-  </section>
-
-  <hr class="terminal-line">
-
-  <div class="terminal-footer">
-    SYS.STATUS: NOMINAL // END OF DIRECTORY
+  <div class="system-footer">
+    SYS.STATUS: NOMINAL // PUBLIC ACCESS
   </div>
 
-</div>
+</section>
