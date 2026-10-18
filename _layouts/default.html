@@ -8,12 +8,10 @@
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.description | default: site.description | escape }}">
 
-  <!-- Chakra Petch font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Main stylesheet -->
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
   <style>
@@ -36,20 +34,16 @@
       white-space: nowrap;
     }
 
-    /* BLINKING TERMINAL CURSOR */
+    /* BLINKING CURSOR ON EVERY PAGE */
 
     .typing-cursor {
       display: inline-block;
-      width: 0.4em;
+      width: 0.25em;
       height: 0.78em;
       margin-left: 0.08em;
       background-color: #70db91;
       vertical-align: -0.07em;
-
-      animation-name: termlink-cursor-blink;
-      animation-duration: 1s;
-      animation-timing-function: step-end;
-      animation-iteration-count: infinite;
+      animation: termlink-cursor-blink 0.8s step-end infinite;
     }
 
     @keyframes termlink-cursor-blink {
@@ -61,8 +55,6 @@
         opacity: 0;
       }
     }
-
-    /* MOBILE */
 
     @media (max-width: 600px) {
       .termlink-status-bar {
@@ -77,19 +69,10 @@
 
   <header class="site-header">
 
-    <!-- SYSTEM STATUS -->
-
     <div class="termlink-status-bar">
-      <span>
-        Welcome to JBCO Industries (TM) TermLink
-      </span>
-
-      <span class="termlink-connected">
-        &#9679; CONNECTED
-      </span>
+      <span>Welcome to JBCO Industries (TM) TermLink</span>
+      <span class="termlink-connected">&#9679; CONNECTED</span>
     </div>
-
-    <!-- ANIMATED NAME -->
 
     <div class="header-inner">
       <a class="site-logo" href="{{ '/' | relative_url }}">
@@ -99,36 +82,22 @@
       </a>
     </div>
 
-    <!-- NAVIGATION -->
-
     <nav class="site-nav" aria-label="Main navigation">
-
       <a href="{{ '/' | relative_url }}"
-         {% if page.url == '/' %}class="active"{% endif %}>
-        HOME
-      </a>
+         {% if page.url == '/' %}class="active"{% endif %}>HOME</a>
 
       <a href="{{ '/projects/' | relative_url }}"
-         {% if page.url contains '/projects/' %}class="active"{% endif %}>
-        PROJECTS
-      </a>
+         {% if page.url contains '/projects/' %}class="active"{% endif %}>PROJECTS</a>
 
       <a href="{{ '/about/' | relative_url }}"
-         {% if page.url == '/about/' %}class="active"{% endif %}>
-        ABOUT
-      </a>
-
+         {% if page.url == '/about/' %}class="active"{% endif %}>ABOUT</a>
     </nav>
 
   </header>
 
-  <!-- PAGE CONTENT -->
-
   <main class="container">
     {{ content }}
   </main>
-
-  <!-- FOOTER -->
 
   <footer class="site-footer">
     <div class="container">
@@ -136,20 +105,25 @@
     </div>
   </footer>
 
-  <!-- FALLOUT-STYLE TYPING ANIMATION -->
-
   <script>
     (() => {
       const finalText = "JARED BRANDOLPH";
       const characterDelay = 115;
 
+      const element = document.getElementById("decrypt-name");
+      if (!element) return;
+
+      // Only type out the name on the homepage.
+      const isHomepage = {{ page.url | jsonify }} === "/";
+
+      if (!isHomepage) {
+        element.textContent = finalText;
+        return;
+      }
+
       let typingTimer = null;
 
       function startTyping() {
-        const element = document.getElementById("decrypt-name");
-
-        if (!element) return;
-
         if (typingTimer !== null) {
           clearTimeout(typingTimer);
         }
