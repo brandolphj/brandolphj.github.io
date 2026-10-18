@@ -12,9 +12,7 @@ permalink: /projects/
     <p>Hands-on cybersecurity labs, investigations, and technical documentation.</p>
   </div>
 
-  <div class="archive-divider">
-    +-- SECURITY RESEARCH & LABORATORY WORK --+
-  </div>
+
 
   <div class="project-grid">
     {% assign sorted_projects = site.projects | sort: "date" | reverse %}
@@ -24,7 +22,6 @@ permalink: /projects/
 
       <div class="project-card-top">
         <span class="project-id">PROJECT_{{ forloop.index | prepend: '00' | slice: -3, 3 }}</span>
-        <span class="project-category">{{ project.category | default: "CYBERSECURITY" }}</span>
       </div>
 
       <h2>{{ project.title }}</h2>
