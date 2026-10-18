@@ -1,0 +1,160 @@
+---
+layout: default
+title: Homepage Design Test
+permalink: /home-test/
+---
+
+<style>
+.fallout-home {
+  max-width: 850px;
+  margin: 35px auto 80px;
+  padding: 30px;
+  background: #101610;
+  border: 1px solid #35583b;
+  border-radius: 6px;
+  font-family: "Courier New", monospace;
+  color: #c9d7cb;
+  line-height: 1.7;
+}
+
+.fallout-home .terminal-intro {
+  color: #70e583;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+
+.fallout-home h1 {
+  color: #89ed9b;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: clamp(26px, 5vw, 42px);
+  margin: 26px 0 6px;
+  line-height: 1.2;
+}
+
+.fallout-home .subtitle {
+  color: #b8c9bc;
+  font-size: 14px;
+}
+
+.fallout-home .terminal-line {
+  border: 0;
+  border-top: 1px solid #365b3d;
+  margin: 25px 0;
+}
+
+.fallout-home .welcome {
+  color: #70e583;
+  margin-bottom: 5px;
+}
+
+.fallout-home .terminal-menu {
+  margin: 24px 0;
+  max-width: 450px;
+}
+
+.fallout-home .terminal-menu a {
+  display: block;
+  padding: 5px 10px;
+  color: #70e583;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.fallout-home .terminal-menu a:hover,
+.fallout-home .terminal-menu a:focus-visible {
+  background: #55e66e;
+  color: #101610;
+}
+
+.fallout-home .section-label {
+  color: #70e583;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.fallout-home .featured-project {
+  padding: 20px;
+  background: #1b261e;
+  border: 1px solid #365b3d;
+  border-radius: 4px;
+}
+
+.fallout-home .featured-project h2 {
+  color: #f0f5f0;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 23px;
+  margin: 8px 0;
+}
+
+.fallout-home .featured-project p {
+  color: #c9d7cb;
+  font-size: 14px;
+}
+
+.fallout-home .featured-project a {
+  color: #70e583;
+  text-decoration: none;
+}
+
+.fallout-home .terminal-footer {
+  color: #8bb994;
+  font-size: 12px;
+}
+
+@media (max-width: 600px) {
+  .fallout-home {
+    padding: 18px;
+  }
+}
+</style>
+
+<div class="fallout-home">
+
+  <div class="terminal-intro">
+    Welcome to Brandolph Systems (TM) TermLink
+  </div>
+  <div class="terminal-intro">
+    Clearance: Public Access
+  </div>
+
+  <h1>JARED BRANDOLPH</h1>
+  <div class="subtitle">
+    Cybersecurity Research & Technical Documentation
+  </div>
+
+  <hr class="terminal-line">
+
+  <p class="welcome">WELCOME, USER.</p>
+  <p class="welcome">TERMINAL ACCESS GRANTED.</p>
+  <p>Select an available directory to continue.</p>
+
+  <nav class="terminal-menu" aria-label="Terminal menu">
+    <a href="{{ '/projects/' | relative_url }}">[Project Archive]</a>
+    <a href="{{ '/about/' | relative_url }}">[Personnel File]</a>
+    <a href="#featured">[Featured Investigation]</a>
+  </nav>
+
+  <hr class="terminal-line">
+
+  <section id="featured">
+    <div class="section-label">[ FEATURED RECORD / CLOUD SECURITY ]</div>
+
+    <div class="featured-project">
+      <h2>Azure IAM & RBAC Investigation</h2>
+      <p>
+        Investigating Azure role assignments, privileged access,
+        and excessive permissions.
+      </p>
+      <a href="{{ '/projects/azure-iam-rbac/' | relative_url }}">
+        &gt; OPEN RECORD
+      </a>
+    </div>
+  </section>
+
+  <hr class="terminal-line">
+
+  <div class="terminal-footer">
+    SYS.STATUS: NOMINAL // END OF DIRECTORY
+  </div>
+
+</div>
