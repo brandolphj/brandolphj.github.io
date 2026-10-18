@@ -35,49 +35,24 @@ title: Home
   </p>
 </div>
 
-<section class="featured-project">
+<section class="featured-project-compact">
 
-  <div class="terminal fallout-terminal">
-    <div class="terminal-header">
-      JBCO INDUSTRIES UNIFIED OPERATING SYSTEM
-    </div>
+  <div class="category">▱ FEATURED PROJECT</div>
 
-    <div class="terminal-body">
-      <div class="fallout-terminal-text"
-           data-project-title="{{ featured.title | escape }}"
-           data-project-category="{{ featured.category | escape }}"
-           data-project-description="{{ featured.description | escape }}">
-        <p>JBCO INDUSTRIES (TM) TERMLINK</p>
-        <p>COPYRIGHT 2077 JBCO INDUSTRIES</p>
-        <p>--------------------------------</p>
-        <p>INITIALIZING PROJECT DATABASE...</p>
-        <p>ACCESS GRANTED.</p>
-        <p>PROJECT: {{ featured.title | escape }}</p>
-        <p>CLASSIFICATION: {{ featured.category | escape }}</p>
-        <p>STATUS: FILE AVAILABLE</p>
-        <p>&gt; <span class="fallout-cursor">_</span></p>
-      </div>
-    </div>
-  </div>
+  <h2>{{ featured.title | escape }}</h2>
 
-  <div>
-    <div class="category">▱ FEATURED PROJECT</div>
+  <p class="category">
+    {{ featured.category | upcase }} |
+    {{ featured.date | date: "%b %Y" | upcase }}
+  </p>
 
-    <h2>{{ featured.title | escape }}</h2>
+  <p class="description">
+    {{ featured.description | escape }}
+  </p>
 
-    <p class="category">
-      {{ featured.category | upcase }} |
-      {{ featured.date | date: "%b %Y" | upcase }}
-    </p>
-
-    <p class="description">
-      {{ featured.description | escape }}
-    </p>
-
-    <a class="button" href="{{ featured.url | relative_url }}">
-      VIEW PROJECT →
-    </a>
-  </div>
+  <a class="button" href="{{ featured.url | relative_url }}">
+    VIEW PROJECT →
+  </a>
 
 </section>
 
@@ -89,6 +64,7 @@ title: Home
   <div class="project-grid">
     {% for project in site.projects %}
       {% unless project.featured %}
+
       <a href="{{ project.url | relative_url }}" class="project-card">
 
         {% if project.image %}
@@ -103,111 +79,31 @@ title: Home
         </div>
 
       </a>
+
       {% endunless %}
     {% endfor %}
   </div>
 </section>
 
 <style>
-  .fallout-terminal {
-    background: #101913;
-    border-color: #45604e;
+  .featured-project-compact {
+    max-width: 900px;
+    margin: 0 0 48px;
+    padding: 0;
   }
 
-  .fallout-terminal .terminal-header {
-    color: #70db91;
-    letter-spacing: 1px;
-    font-size: 12px;
+  .featured-project-compact h2 {
+    font-size: clamp(26px, 3vw, 36px);
+    margin: 14px 0;
   }
 
-  .fallout-terminal-text {
-    color: #70db91;
-    font-family: "Courier New", monospace;
-    font-size: 14px;
-    line-height: 1.65;
-    overflow-wrap: anywhere;
+  .featured-project-compact .description {
+    color: #bcbcbc;
+    max-width: 780px;
+    margin: 20px 0 26px;
   }
 
-  .fallout-terminal-text p {
-    margin: 0 0 12px;
-  }
-
-  .fallout-cursor {
-    animation: fallout-blink 0.8s step-end infinite;
-  }
-
-  @keyframes fallout-blink {
-    50% { opacity: 0; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .fallout-cursor {
-      animation: none;
-    }
+  .featured-project-compact .button {
+    margin-bottom: 8px;
   }
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const terminal = document.querySelector(".fallout-terminal-text");
-    if (!terminal) return;
-
-    const title = terminal.dataset.projectTitle;
-    const category = terminal.dataset.projectCategory;
-    const description = terminal.dataset.projectDescription;
-
-    const lines = [
-      "JBCO INDUSTRIES (TM) TERMLINK",
-      "COPYRIGHT 2077 JBCO INDUSTRIES",
-      "--------------------------------",
-      "INITIALIZING PROJECT DATABASE...",
-      "ACCESS GRANTED.",
-      "",
-      "PROJECT: " + title,
-      "CLASSIFICATION: " + category,
-      "FILE SUMMARY: " + description,
-      "",
-      "STATUS: FILE AVAILABLE",
-      "> _"
-    ];
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      terminal.replaceChildren();
-      lines.forEach(function (line) {
-        const p = document.createElement("p");
-        p.textContent = line || "\u00a0";
-        terminal.appendChild(p);
-      });
-      return;
-    }
-
-    terminal.replaceChildren();
-
-    let lineIndex = 0;
-
-    function typeLine() {
-      if (lineIndex >= lines.length) return;
-
-      const p = document.createElement("p");
-      terminal.appendChild(p);
-
-      const line = lines[lineIndex];
-      let charIndex = 0;
-
-      function typeCharacter() {
-        if (charIndex < line.length) {
-          p.textContent += line.charAt(charIndex);
-          charIndex++;
-          setTimeout(typeCharacter, 12);
-        } else {
-          lineIndex++;
-          setTimeout(typeLine, 110);
-        }
-      }
-
-      typeCharacter();
-    }
-
-    typeLine();
-  });
-</script>
