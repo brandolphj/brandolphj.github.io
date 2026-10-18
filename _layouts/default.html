@@ -40,41 +40,43 @@
     </div>
   </footer>
   
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const element = document.getElementById("decrypt-name");
   if (!element) return;
 
   const finalText = "JARED BRANDOLPH";
-  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
-  const duration = 1500;
-  const interval = 40;
-
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    element.textContent = finalText;
-    return;
-  }
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
+  const duration = 1800;
+  const frameDelay = 35;
 
   let startTime = null;
+  let lastFrame = 0;
+
+  function scramble(revealed) {
+    return finalText.split("").map((char, index) => {
+      if (char === " ") return " ";
+      if (index < revealed) return char;
+
+      return chars[Math.floor(Math.random() * chars.length)];
+    }).join("");
+  }
+
+  // Show scrambled text immediately.
+  element.textContent = scramble(0);
 
   function animate(timestamp) {
     if (startTime === null) startTime = timestamp;
 
     const elapsed = timestamp - startTime;
     const progress = Math.min(elapsed / duration, 1);
-    const revealed = Math.floor(progress * finalText.length);
 
-    element.textContent = finalText
-      .split("")
-      .map((letter, index) => {
-        if (letter === " ") return " ";
-        if (index < revealed) return letter;
-
-        return characters[
-          Math.floor(Math.random() * characters.length)
-        ];
-      })
-      .join("");
+    if (timestamp - lastFrame >= frameDelay || progress === 1) {
+      const revealed = Math.floor(progress * finalText.length);
+      element.textContent = scramble(revealed);
+      lastFrame = timestamp;
+    }
 
     if (progress < 1) {
       requestAnimationFrame(animate);
@@ -86,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   requestAnimationFrame(animate);
 });
 </script>
+
 
 </body>
 </html>
