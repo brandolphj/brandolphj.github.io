@@ -45,15 +45,16 @@
   </footer>
   
 
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const element = document.getElementById("decrypt-name");
   if (!element) return;
 
   const finalText = "JARED BRANDOLPH";
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
-  const duration = 1800;
-  const frameDelay = 35;
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const duration = 1400;
+  const frameDelay = 65;
 
   let startTime = null;
   let lastFrame = 0;
@@ -63,11 +64,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (char === " ") return " ";
       if (index < revealed) return char;
 
-      return chars[Math.floor(Math.random() * chars.length)];
+      return characters[
+        Math.floor(Math.random() * characters.length)
+      ];
     }).join("");
   }
 
-  // Show scrambled text immediately.
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    element.textContent = finalText;
+    return;
+  }
+
   element.textContent = scramble(0);
 
   function animate(timestamp) {
@@ -76,8 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const elapsed = timestamp - startTime;
     const progress = Math.min(elapsed / duration, 1);
 
+    // Smooth acceleration
+    const eased = progress * progress * (3 - 2 * progress);
+    const revealed = Math.floor(eased * finalText.length);
+
     if (timestamp - lastFrame >= frameDelay || progress === 1) {
-      const revealed = Math.floor(progress * finalText.length);
       element.textContent = scramble(revealed);
       lastFrame = timestamp;
     }
@@ -92,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
   requestAnimationFrame(animate);
 });
 </script>
+
 
 
 </body>
