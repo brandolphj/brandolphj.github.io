@@ -4,6 +4,14 @@ title: Azure IAM & RBAC Investigation
 category: Cloud Security / IAM
 description: Investigating Azure role assignments, privileged access, and excessive permissions.
 image: /assets/images/azure-iam.png
+description: "Investigating excessive permissions and privileged access in Azure."
+category: "Cloud Security"
+date: 2026-10-17
+tools:
+  - Azure
+  - Entra ID
+  - RBAC
+  - PIM
 ---
 
 # Azure IAM & RBAC Investigation
