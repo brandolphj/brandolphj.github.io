@@ -50,7 +50,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   padding-bottom: 22px;
-  border-bottom: 3px solid var(--border);
+  border-bottom: 3px solid var(--green);
 }
 
 .site-logo {
