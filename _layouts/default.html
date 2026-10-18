@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+
   <meta name="description" content="{{ page.description | default: site.description | escape }}">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,900&family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
   <style>
-    /* TERMLINK SYSTEM HEADER */
-
     .termlink-status-bar {
       display: flex;
       justify-content: space-between;
@@ -34,7 +33,23 @@
       white-space: nowrap;
     }
 
-    /* BLINKING CURSOR ON EVERY PAGE */
+    /* Fallout-inspired name styling */
+    .site-logo {
+      display: inline-block;
+      color: #70db91;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    #decrypt-name {
+      display: inline-block;
+      white-space: nowrap;
+    }
 
     .typing-cursor {
       display: inline-block;
@@ -61,6 +76,17 @@
         font-size: 11px;
         padding-bottom: 16px;
       }
+
+      .site-logo {
+        font-size: clamp(26px, 7vw, 38px);
+        letter-spacing: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .typing-cursor {
+        animation: none;
+      }
     }
   </style>
 </head>
@@ -77,20 +103,27 @@
     <div class="header-inner">
       <a class="site-logo" href="{{ '/' | relative_url }}">
         <span id="decrypt-name">JARED BRANDOLPH</span><span
-          class="typing-cursor"
-          aria-hidden="true"></span>
+          class="typing-cursor" aria-hidden="true"></span>
       </a>
     </div>
 
     <nav class="site-nav" aria-label="Main navigation">
+
       <a href="{{ '/' | relative_url }}"
-         {% if page.url == '/' %}class="active"{% endif %}>HOME</a>
+         {% if page.url == '/' %}class="active"{% endif %}>
+        HOME
+      </a>
 
       <a href="{{ '/projects/' | relative_url }}"
-         {% if page.url contains '/projects/' %}class="active"{% endif %}>PROJECTS</a>
+         {% if page.url contains '/projects/' %}class="active"{% endif %}>
+        PROJECTS
+      </a>
 
       <a href="{{ '/about/' | relative_url }}"
-         {% if page.url == '/about/' %}class="active"{% endif %}>ABOUT</a>
+         {% if page.url == '/about/' %}class="active"{% endif %}>
+        ABOUT
+      </a>
+
     </nav>
 
   </header>
@@ -111,12 +144,17 @@
       const characterDelay = 115;
 
       const element = document.getElementById("decrypt-name");
+
       if (!element) return;
 
-      // Only type out the name on the homepage.
       const isHomepage = {{ page.url | jsonify }} === "/";
 
       if (!isHomepage) {
+        element.textContent = finalText;
+        return;
+      }
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         element.textContent = finalText;
         return;
       }
@@ -139,6 +177,7 @@
           }
 
           element.textContent += finalText.charAt(index);
+
           index++;
 
           typingTimer = setTimeout(
