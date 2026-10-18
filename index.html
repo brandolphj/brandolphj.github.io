@@ -3,6 +3,8 @@ layout: default
 title: Home
 ---
 
+{% assign featured = site.projects | where: "featured", true | first %}
+
 <div style="margin-bottom: 28px; font-family: 'Courier New', monospace; color: #70db91;">
   <div style="font-size: 20px; margin-bottom: 10px;">
     &gt; WELCOME, USER.
@@ -14,83 +16,80 @@ title: Home
 
 <section class="hero">
   <p>
-    Hi, I'm Jared (obviously). Welcome to my little corner of the wasteland. This is my digital workspace where I document infosec projects, share things I think are interesting, and other fun stuff.
+    Hi, I'm Jared (obviously). Welcome to my little corner of the wasteland.
+    This is my digital workspace where I document infosec projects,
+    share things I think are interesting, and other fun stuff.
   </p>
 </section>
+
+{% if featured %}
 
 <div class="latest-banner">
   <p>
     <span class="category">&gt;</span>
-    Check out my latest project:
-    <a href="{{ '/projects/azure-iam-rbac/' | relative_url }}">
-      <strong>Azure IAM &amp; RBAC Investigation</strong>
+    Check out my featured project:
+    <a href="{{ featured.url | relative_url }}">
+      <strong>{{ featured.title | escape }}</strong>
     </a>
-    — a hands-on look at role assignments,
-    privileged access, and excessive permissions.
+    — {{ featured.description | escape }}
   </p>
 </div>
 
 <section class="featured-project">
 
-  <div class="terminal">
+  <div class="terminal fallout-terminal">
     <div class="terminal-header">
-      ● ● ● &nbsp; Azure CLI ~/projects/azure-iam-rbac
+      JBCO INDUSTRIES UNIFIED OPERATING SYSTEM
     </div>
 
     <div class="terminal-body">
-<pre><span class="command">$ az role assignment list \
-  --resource-group example-rg \
-  --output table</span>
-
-Principal        Role          Scope
-------------------------------------------
-security-admin   Owner         example-rg
-analyst          Reader        example-rg
-service-app      Contributor   example-rg
-
-<span class="command">$ az role assignment list \
-  --all --output table</span>
-
-Reviewing role assignments...
-Checking privileged access...
-Investigating excessive permissions...
-
-<span class="command">$ _</span></pre>
+      <div class="fallout-terminal-text"
+           data-project-title="{{ featured.title | escape }}"
+           data-project-category="{{ featured.category | escape }}"
+           data-project-description="{{ featured.description | escape }}">
+        <p>JBCO INDUSTRIES (TM) TERMLINK</p>
+        <p>COPYRIGHT 2077 JBCO INDUSTRIES</p>
+        <p>--------------------------------</p>
+        <p>INITIALIZING PROJECT DATABASE...</p>
+        <p>ACCESS GRANTED.</p>
+        <p>PROJECT: {{ featured.title | escape }}</p>
+        <p>CLASSIFICATION: {{ featured.category | escape }}</p>
+        <p>STATUS: FILE AVAILABLE</p>
+        <p>&gt; <span class="fallout-cursor">_</span></p>
+      </div>
     </div>
   </div>
 
   <div>
     <div class="category">▱ FEATURED PROJECT</div>
 
-    <h2>Azure IAM &amp; RBAC Investigation</h2>
+    <h2>{{ featured.title | escape }}</h2>
 
     <p class="category">
-      CLOUD SECURITY / IAM | OCT 2026
+      {{ featured.category | upcase }} |
+      {{ featured.date | date: "%b %Y" | upcase }}
     </p>
 
     <p class="description">
-      A hands-on investigation of Azure identity and
-      access management, focusing on role-based access
-      control (RBAC) and Privileged Identity Management
-      (PIM).
+      {{ featured.description | escape }}
     </p>
 
-    <a class="button"
-       href="{{ '/projects/azure-iam-rbac/' | relative_url }}">
+    <a class="button" href="{{ featured.url | relative_url }}">
       VIEW PROJECT →
     </a>
   </div>
 
 </section>
 
+{% endif %}
+
 <section>
   <h2 class="section-title">MORE PROJECTS</h2>
 
   <div class="project-grid">
     {% for project in site.projects %}
-      {% unless project.url contains 'azure-iam-rbac' %}
-      <a href="{{ project.url | relative_url }}"
-         class="project-card">
+      {% unless project.featured %}
+      <a href="{{ project.url | relative_url }}" class="project-card">
 
         {% if project.image %}
         <img src="{{ project.image | relative_url }}"
@@ -108,3 +107,107 @@ Investigating excessive permissions...
     {% endfor %}
   </div>
 </section>
+
+<style>
+  .fallout-terminal {
+    background: #101913;
+    border-color: #45604e;
+  }
+
+  .fallout-terminal .terminal-header {
+    color: #70db91;
+    letter-spacing: 1px;
+    font-size: 12px;
+  }
+
+  .fallout-terminal-text {
+    color: #70db91;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+
+  .fallout-terminal-text p {
+    margin: 0 0 12px;
+  }
+
+  .fallout-cursor {
+    animation: fallout-blink 0.8s step-end infinite;
+  }
+
+  @keyframes fallout-blink {
+    50% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fallout-cursor {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const terminal = document.querySelector(".fallout-terminal-text");
+    if (!terminal) return;
+
+    const title = terminal.dataset.projectTitle;
+    const category = terminal.dataset.projectCategory;
+    const description = terminal.dataset.projectDescription;
+
+    const lines = [
+      "JBCO INDUSTRIES (TM) TERMLINK",
+      "COPYRIGHT 2077 JBCO INDUSTRIES",
+      "--------------------------------",
+      "INITIALIZING PROJECT DATABASE...",
+      "ACCESS GRANTED.",
+      "",
+      "PROJECT: " + title,
+      "CLASSIFICATION: " + category,
+      "FILE SUMMARY: " + description,
+      "",
+      "STATUS: FILE AVAILABLE",
+      "> _"
+    ];
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      terminal.replaceChildren();
+      lines.forEach(function (line) {
+        const p = document.createElement("p");
+        p.textContent = line || "\u00a0";
+        terminal.appendChild(p);
+      });
+      return;
+    }
+
+    terminal.replaceChildren();
+
+    let lineIndex = 0;
+
+    function typeLine() {
+      if (lineIndex >= lines.length) return;
+
+      const p = document.createElement("p");
+      terminal.appendChild(p);
+
+      const line = lines[lineIndex];
+      let charIndex = 0;
+
+      function typeCharacter() {
+        if (charIndex < line.length) {
+          p.textContent += line.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeCharacter, 12);
+        } else {
+          lineIndex++;
+          setTimeout(typeLine, 110);
+        }
+      }
+
+      typeCharacter();
+    }
+
+    typeLine();
+  });
+</script>
