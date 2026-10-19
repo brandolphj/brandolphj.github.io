@@ -39,7 +39,49 @@ a:hover {
   margin: 0 auto;
 }
 
-/* HEADER */
+/* =====================================
+   TYPOGRAPHY
+   ===================================== */
+
+/* Main headings: Chakra Petch */
+
+h1,
+h2,
+h3 {
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+h1 {
+  font-size: clamp(28px, 3vw, 42px);
+}
+
+h2 {
+  font-size: 25px;
+}
+
+p {
+  margin-bottom: 22px;
+}
+
+/* Terminal labels: Courier New */
+
+.category {
+  color: var(--green);
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* =====================================
+   HEADER
+   ===================================== */
 
 .site-header {
   padding: 22px 3% 0;
@@ -52,6 +94,8 @@ a:hover {
   padding-bottom: 22px;
   border-bottom: 3px solid var(--green);
 }
+
+/* Fallout-inspired logo */
 
 .site-logo {
   display: inline-block;
@@ -70,13 +114,25 @@ a:hover {
   white-space: nowrap;
 }
 
+/* Header typing cursor */
+
+.site-logo .typing-cursor {
+  display: inline-block;
+  width: 0.22em;
+  height: 0.8em;
+  margin-left: 0.08em;
+  background-color: var(--green);
+  vertical-align: -0.07em;
+  animation: terminal-blink 0.8s step-end infinite;
+}
+
+/* General terminal cursor */
+
 .prompt {
   display: inline-flex;
   align-items: baseline;
   white-space: nowrap;
 }
-
-/* GENERAL TERMINAL CURSOR */
 
 .cursor {
   display: inline-block;
@@ -88,6 +144,8 @@ a:hover {
   animation: terminal-blink 0.8s step-end infinite;
 }
 
+/* Shared cursor animation */
+
 @keyframes terminal-blink {
   0%, 49% {
     opacity: 1;
@@ -98,30 +156,9 @@ a:hover {
   }
 }
 
-/* HEADER TYPING CURSOR */
-
-.site-logo .typing-cursor {
-  display: inline-block;
-  width: 0.22em;
-  height: 0.8em;
-  margin-left: 0.08em;
-  background-color: var(--green);
-  vertical-align: -0.07em;
-  opacity: 1;
-  animation: header-blink 0.8s step-end infinite;
-}
-
-@keyframes header-blink {
-  0%, 49% {
-    opacity: 1;
-  }
-
-  50%, 100% {
-    opacity: 0;
-  }
-}
-
-/* FALLOUT TERMINAL NAVIGATION */
+/* =====================================
+   NAVIGATION
+   ===================================== */
 
 .site-nav {
   display: flex;
@@ -135,16 +172,14 @@ a:hover {
 .site-nav a {
   display: inline-block;
   padding: 8px 16px;
-  border: 0;
-  background: transparent;
   color: var(--green);
   font-family: "Courier New", monospace;
   font-size: 14px;
   font-weight: normal;
   letter-spacing: 1px;
   line-height: 1.5;
-  text-decoration: none;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.15s ease,
+              color 0.15s ease;
 }
 
 .site-nav a::before {
@@ -171,31 +206,14 @@ a:hover {
   outline-offset: 3px;
 }
 
-/* MAIN CONTENT */
+/* =====================================
+   MAIN CONTENT
+   ===================================== */
 
 main {
   min-height: 65vh;
   padding-top: 28px;
   padding-bottom: 70px;
-}
-
-h1,
-h2,
-h3 {
-  line-height: 1.3;
-  color: var(--text);
-}
-
-h1 {
-  font-size: clamp(28px, 3vw, 42px);
-}
-
-h2 {
-  font-size: 25px;
-}
-
-p {
-  margin-bottom: 22px;
 }
 
 .hero {
@@ -206,15 +224,9 @@ p {
   max-width: 1100px;
 }
 
-.category {
-  color: var(--green);
-  font-size: 13px;
-  letter-spacing: 1px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-/* LATEST PROJECT BANNER */
+/* =====================================
+   LATEST POST BANNER
+   ===================================== */
 
 .latest-banner {
   background: var(--panel);
@@ -227,23 +239,34 @@ p {
   margin: 0;
 }
 
-/* FEATURED PROJECT */
+/* =====================================
+   FEATURED PROJECT
+   ===================================== */
 
-.featured-project {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 36px;
-  align-items: center;
-  margin-bottom: 55px;
+.featured-project-compact {
+  max-width: 900px;
+  margin: 0 0 48px;
 }
 
-.featured-project h2 {
-  font-size: clamp(24px, 2.5vw, 34px);
+.featured-project-compact h2 {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: clamp(26px, 3vw, 36px);
+  margin: 14px 0;
 }
 
-.featured-project .description {
+.featured-project-compact .description {
   color: var(--muted);
+  max-width: 780px;
+  margin: 20px 0 26px;
 }
+
+.featured-project-compact .button {
+  margin-bottom: 8px;
+}
+
+/* =====================================
+   TERMINAL PANELS
+   ===================================== */
 
 .terminal {
   border: 1px solid var(--border);
@@ -276,7 +299,9 @@ p {
   color: var(--green);
 }
 
-/* BUTTONS */
+/* =====================================
+   BUTTONS
+   ===================================== */
 
 .button {
   display: inline-block;
@@ -292,13 +317,16 @@ p {
   color: var(--terminal);
 }
 
-/* PROJECT GRID */
+/* =====================================
+   PROJECT GRID
+   ===================================== */
 
 .section-title {
   border-top: 3px solid var(--border);
   padding-top: 22px;
   margin-bottom: 25px;
   color: var(--green);
+  font-family: "Chakra Petch", sans-serif;
   font-size: 17px;
   text-transform: uppercase;
 }
@@ -319,7 +347,8 @@ p {
   border-radius: 5px;
   overflow: hidden;
   color: var(--text);
-  transition: border-color 0.2s, transform 0.2s;
+  transition: border-color 0.2s ease,
+              transform 0.2s ease;
 }
 
 .project-card:hover {
@@ -339,6 +368,7 @@ p {
 }
 
 .project-content h3 {
+  font-family: "Chakra Petch", sans-serif;
   margin: 12px 0;
 }
 
@@ -347,7 +377,9 @@ p {
   margin-bottom: 0;
 }
 
-/* PROJECT ARTICLES */
+/* =====================================
+   PROJECT ARTICLES
+   ===================================== */
 
 article {
   max-width: 1000px;
@@ -365,16 +397,9 @@ article pre {
   border: 1px solid var(--border);
 }
 
-/* FOOTER */
-
-.site-footer {
-  border-top: 3px solid var(--border);
-  padding: 24px 0;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-/* PROJECT ARCHIVE */
+/* =====================================
+   PROJECT ARCHIVE
+   ===================================== */
 
 .projects-archive {
   padding: 40px 0 80px;
@@ -386,13 +411,12 @@ article pre {
 
 .archive-label {
   color: var(--green);
-  font-family: monospace;
+  font-family: "Courier New", monospace;
   letter-spacing: 2px;
   font-size: 13px;
 }
 
 .archive-heading h1 {
-  font-family: "Chakra Petch", sans-serif;
   font-size: clamp(32px, 5vw, 48px);
   margin: 12px 0;
 }
@@ -404,7 +428,6 @@ article pre {
 
 .archive-divider {
   color: var(--green);
-  font-family: monospace;
   font-size: 12px;
   margin-bottom: 25px;
   overflow-wrap: anywhere;
@@ -418,8 +441,8 @@ article pre {
   border-radius: 6px;
   padding: 24px;
   color: #eeeeee;
-  text-decoration: none;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease,
+              transform 0.2s ease;
 }
 
 .archive-project-card:hover {
@@ -432,7 +455,6 @@ article pre {
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 22px;
-  font-family: monospace;
   font-size: 11px;
 }
 
@@ -447,9 +469,7 @@ article pre {
 }
 
 .archive-project-card h2 {
-  font-family: "Chakra Petch", sans-serif;
   font-size: 23px;
-  line-height: 1.3;
   margin: 0 0 12px;
 }
 
@@ -473,7 +493,6 @@ article pre {
   color: #a9e4bb;
   padding: 5px 8px;
   border-radius: 3px;
-  font-family: monospace;
   font-size: 11px;
 }
 
@@ -481,11 +500,23 @@ article pre {
   border-top: 3px solid #435748;
   padding-top: 17px;
   color: var(--green);
-  font-family: monospace;
   font-size: 12px;
 }
 
-/* MOBILE */
+/* =====================================
+   FOOTER
+   ===================================== */
+
+.site-footer {
+  border-top: 3px solid var(--border);
+  padding: 24px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* =====================================
+   MOBILE
+   ===================================== */
 
 @media (max-width: 750px) {
   .site-logo {
@@ -503,16 +534,14 @@ article pre {
     letter-spacing: 0.5px;
   }
 
-  .featured-project {
-    grid-template-columns: 1fr;
-  }
-
   .terminal-body pre {
     font-size: 11px;
   }
 }
 
-/* ACCESSIBILITY */
+/* =====================================
+   ACCESSIBILITY
+   ===================================== */
 
 @media (prefers-reduced-motion: reduce) {
   html {
