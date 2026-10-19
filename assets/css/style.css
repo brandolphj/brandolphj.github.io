@@ -390,6 +390,11 @@ article img {
   height: auto;
 }
 
+/* Green section headings on project pages only */
+.project-article h2 {
+  color: var(--green);
+}
+
 article pre {
   overflow-x: auto;
   padding: 18px;
