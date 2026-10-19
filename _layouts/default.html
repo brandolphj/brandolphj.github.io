@@ -33,7 +33,7 @@
       white-space: nowrap;
     }
 
-    /* Fallout-inspired name styling */
+    /* Fallout-inspired header name */
     .site-logo {
       display: inline-block;
       color: #70db91;
@@ -51,6 +51,7 @@
       white-space: nowrap;
     }
 
+    /* Blinking green cursor */
     .typing-cursor {
       display: inline-block;
       width: 0.25em;
@@ -140,21 +141,17 @@
 
   <script>
     (() => {
+      const element = document.getElementById("decrypt-name");
+      if (!element) return;
+
       const finalText = "JARED BRANDOLPH";
       const characterDelay = 115;
 
-      const element = document.getElementById("decrypt-name");
-
-      if (!element) return;
-
-      const isHomepage = {{ page.url | jsonify }} === "/";
+      // Animate only on the homepage.
+      const path = window.location.pathname;
+      const isHomepage = path === "/" || path === "/index.html";
 
       if (!isHomepage) {
-        element.textContent = finalText;
-        return;
-      }
-
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         element.textContent = finalText;
         return;
       }
@@ -167,7 +164,6 @@
         }
 
         element.textContent = "";
-
         let index = 0;
 
         function typeNextCharacter() {
@@ -177,7 +173,6 @@
           }
 
           element.textContent += finalText.charAt(index);
-
           index++;
 
           typingTimer = setTimeout(
@@ -189,7 +184,15 @@
         typeNextCharacter();
       }
 
-      window.addEventListener("pageshow", startTyping);
+      // Run immediately on initial page load.
+      startTyping();
+
+      // Replay when returning using browser history.
+      window.addEventListener("pageshow", (event) => {
+        if (event.persisted) {
+          startTyping();
+        }
+      });
     })();
   </script>
 
