@@ -15,9 +15,11 @@ permalink: /projects/
 
 
   <div class="project-grid">
-    {% assign sorted_projects = site.projects | sort: "date" | reverse %}
+    
+{% assign sorted_projects = site.projects | sort: "report_number" | reverse %}
 
-    {% for project in sorted_projects %}
+{% for project in sorted_projects %}
+
     <a class="archive-project-card" href="{{ project.url | relative_url }}">
 
       <div class="project-card-top">
