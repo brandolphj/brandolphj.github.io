@@ -2,7 +2,6 @@
 report_number: "003"
 layout: project
 title: Project Title
-category: Cloud Security
 description: Brief description of the project.
 date: 2026-10-17
 tools:
