@@ -1,7 +1,6 @@
 ---
 layout: project
 title: Project Title
-category: Cloud Security
 description: Brief description of the project.
 date: 2026-10-17
 tools:
@@ -18,11 +17,6 @@ Describe the project, its purpose, and the problem being addressed.
 - Objective 1
 - Objective 2
 - Objective 3
-
-## Tools & Technologies
-
-- Tool 1
-- Tool 2
 
 ## Investigation Process
 
