@@ -7,7 +7,7 @@ permalink: /projects/
 <section class="projects-archive">
 
   <div class="archive-heading">
-    <p class="archive-label">[ /PROJECTS ]</p>
+    <p class="archive-label"></p>
     <h1>[ Project Archive ]</h1>
     <p>Hands-on cybersecurity labs, investigations, and technical documentation.</p>
   </div>
@@ -21,7 +21,7 @@ permalink: /projects/
     <a class="archive-project-card" href="{{ project.url | relative_url }}">
 
       <div class="project-card-top">
-        <span class="project-id">PROJECT_{{ forloop.index | prepend: '00' | slice: -3, 3 }}</span>
+        <span class="project-id">FIELD REPORT{{ forloop.index | prepend: '00' | slice: -3, 3 }}</span>
       </div>
 
       <h2>{{ project.title }}</h2>
