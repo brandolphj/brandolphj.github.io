@@ -6,7 +6,7 @@ description: Investigating Azure role assignments, privileged access, and excess
 date: 2026-10-17
 featured: true
 tools:
-  - 
+  - Azure
   - 
   - 
   - 
