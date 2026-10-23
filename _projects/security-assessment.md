@@ -9,7 +9,9 @@ tools:
 
 Your explanation here.
 
-## Investigation
+## TLDR
+
+https://vasttoast2261.grafana.net/public-dashboards/9bc39cf725af40488b8775c93f51d4b4
 
 ### Setup
 
