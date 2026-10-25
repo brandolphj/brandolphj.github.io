@@ -3,7 +3,9 @@ report_number: "002"
 title: "Honeypot"
 description: "A brief description of the project."
 tools:
-  - Microsoft Defender
+  - Azure
+  - Docker
+  - Cowrie
 ---
 ## Background
 
