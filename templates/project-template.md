@@ -1,4 +1,5 @@
 ---
+report_number: "0000"
 layout: project
 title: Project Title
 description: Brief description of the project.
